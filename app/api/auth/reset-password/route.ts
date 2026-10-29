@@ -4,7 +4,7 @@ import { createHash } from "node:crypto";
 import bcrypt from "bcryptjs";
 import pool from "@/lib/db";
 
-export const dynamic = "force-dynamic";
+
 
 export async function POST(request: NextRequest) {
   let body: { token?: unknown; password?: unknown };
