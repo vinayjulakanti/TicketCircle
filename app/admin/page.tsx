@@ -1,5 +1,6 @@
 
 import { Suspense } from "react";
+import { connection } from "next/server";
 import type { RowDataPacket } from "mysql2";
 import Link from "next/link";
 import pool from "@/lib/db";
@@ -23,6 +24,8 @@ async function getCount(sql: string): Promise<number> {
 }
 
 async function DashboardData() {
+  await connection();
+
   const [totalUsers, totalFeedback, newFeedback, feedbackResult] =
     await Promise.all([
       getCount("SELECT COUNT(*) AS total FROM users"),

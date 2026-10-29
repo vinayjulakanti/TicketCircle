@@ -1,5 +1,6 @@
 
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 import FeedbackButton from "@/components/FeedbackButton";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -19,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ThemeProvider>
-          {children}
+          <Suspense fallback={null}>
+            {children}
+          </Suspense>
           <FeedbackButton />
         </ThemeProvider>
       </body>

@@ -20,23 +20,43 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>("light");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("ticketcircle-theme") as Theme | null;
+    try {
+      const savedTheme = localStorage.getItem("ticketcircle-theme");
 
-    if (savedTheme === "light" || savedTheme === "dark" || savedTheme === "system") {
-      setTheme(savedTheme);
+      if (
+        savedTheme === "light" ||
+        savedTheme === "dark" ||
+        savedTheme === "system"
+      ) {
+        setTheme(savedTheme);
+      }
+    } catch {
+      // Continue with the default theme if storage is unavailable.
+    } finally {
+      setMounted(true);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("ticketcircle-theme", theme);
+    if (!mounted) return;
 
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const useDark = theme === "dark" || (theme === "system" && prefersDark);
+    try {
+      localStorage.setItem("ticketcircle-theme", theme);
+    } catch {
+      // The theme can still work if storage is unavailable.
+    }
+
+    const prefersDark =
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    const useDark =
+      theme === "dark" || (theme === "system" && prefersDark);
 
     document.documentElement.classList.toggle("dark", useDark);
-  }, [theme]);
+  }, [theme, mounted]);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
