@@ -171,7 +171,10 @@ return;
         </section>
 
         {/* Login form */}
-        <section className="flex flex-col justify-center px-6 py-8 sm:px-10 lg:px-12 lg:py-8">
+<section className="flex flex-col justify-center px-6 py-8 sm:px-10 lg:px-12 lg:py-8">
+  <h1 className="mb-5 text-center text-3xl font-extrabold text-purple-700 lg:hidden">
+    TicketCircle
+  </h1>
           <div className="mb-6">
             <p className="text-sm font-bold uppercase tracking-widest text-purple-700">
               Welcome to TicketCircle
