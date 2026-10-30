@@ -89,9 +89,9 @@ return;
 
   return (
     <main className="min-h-screen bg-slate-50 px-4 py-4 sm:px-6 lg:flex lg:items-center lg:justify-center lg:py-5">
-      <div className="mx-auto grid w-full max-w-6xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl lg:grid-cols-2">
+      <div className="mx-auto grid w-full max-w-6xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl md:grid-cols-2">
         {/* TicketCircle welcome panel */}
-        <section className="relative flex flex-col justify-center overflow-hidden bg-gradient-to-br from-indigo-700 via-purple-700 to-purple-600 px-7 py-9 text-white sm:px-10 lg:px-12 lg:py-8">
+        <section className="relative hidden flex-col justify-center overflow-hidden bg-gradient-to-br from-indigo-700 via-purple-700 to-purple-600 px-7 py-9 text-white sm:px-10 lg:px-12 lg:py-8 md:flex">
           {/* Decorative background circles */}
           <div
             aria-hidden="true"
